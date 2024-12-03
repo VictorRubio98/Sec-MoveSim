@@ -99,8 +99,8 @@ def main(opt):
             pre_dis_eps = single_epoch_eps * d_pre_epoch
             pre_gen_eps = single_epoch_eps * g_pre_epoch
             
-        # generate_samples(generator, BATCH_SIZE, SEQ_LEN, GENERATED_NUM,
-        #                  EPS_PATH + '/gene_epoch_init.data')
+        generate_samples(generator, BATCH_SIZE, SEQ_LEN, GENERATED_NUM,
+                         EPS_PATH + '/gene_epoch_init.data')
 
         # pretrain discriminator
         logger.info('pretrain discriminator ...')
@@ -202,7 +202,7 @@ def main(opt):
     dis_criterion = dis_criterion.to(device)
 
     generate_samples(generator, BATCH_SIZE, SEQ_LEN, GENERATED_NUM, GENE_DATA)
-    generate_samples(generator, BATCH_SIZE, SEQ_LEN, GENERATED_NUM, EPS_PATH +'/gene_epoch_{0}.data')
+    generate_samples(generator, BATCH_SIZE, SEQ_LEN, GENERATED_NUM, EPS_PATH + f'/gene_epoch_{0}.data')
     print('Samples generated starting training', flush = True)
     if make_private:
         eps = (opt.epsilon-real_eps)/(EPOCHS*4) #This variable epsilon is used everey 2 epochs. 
@@ -290,7 +290,7 @@ def main(opt):
                               for j in [epoch, float(gloss.item()), dloss]]))
             f.write('\n')
         if (epoch + 1) % 20 == 0:
-            generate_samples(generator, BATCH_SIZE, SEQ_LEN, GENERATED_NUM,  EPS_PATH +'/gene_epoch_{epoch+1}.data')
+            generate_samples(generator, BATCH_SIZE, SEQ_LEN, GENERATED_NUM,  EPS_PATH + f'/gene_epoch_{epoch+1}.data')
     
     test_data = read_data_from_file(TEST_DATA)
     gene_data = read_data_from_file(GENE_DATA)

@@ -8,16 +8,24 @@ Codes for paper in KDD'20 (AI for COVID-19): Learning to Simulate Human Mobility
 
 ## Requirements
 
-* **Python 3.6**
-* **PyTorch >= 1.0**
-* Numpy
-* Scipy
-
+* **Python = 3.10.9** 
+* **opacus = 1.2.0** 
+* **numpy = 1.24.3** 
+* **scipy = 1.10.1** 
+* **pytorch = 2.0.1** 
+* **pytorch-cuda = 11.8**
 ## Usage
 
 Pretrain and train new model:
 
 `python main.py --pretrain --data=geolife`
+
+**Other commands**
+* --epsilon, -e: desired privacy budget, if -1 means train without DP.
+* --delta: desired delta in (epsilon, delta) DP.
+* --skipm: Skip M1 and M2 matrix generation.
+* --load: Load pretrained models (form folder pretrain)
+* --cuda: either 'cpu' if no cuda available or the number of the GPU when listing cuda devices.
 
 Evaluation with generated data:
 
